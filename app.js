@@ -54,15 +54,15 @@ class GroceryListItem extends React.Component {
     super(props);
 
     this.state = {
-      done: false
+      bold: false
     };
   }
 
   //When a list item is clicked, we will toggle the 'done' boolean,
   //and our component's 'render' method will run again
-  onListItemClick() {
+  onListItemHover() {
     this.setState({
-      done: !this.state.done
+      bold: !this.state.bold
     });
   }
 
@@ -71,7 +71,7 @@ class GroceryListItem extends React.Component {
   render() {
     // making the style conditional on our 'state' lets us update it based on user interactions
     var style = {
-      textDecoration: this.state.done ? 'line-through' : 'none'
+      fontWeight: this.state.bold ? 'bold' : 'normal'
     };
 
 
@@ -80,7 +80,7 @@ class GroceryListItem extends React.Component {
     //props is no longer passed in as an argument,
     //but instead accessed with 'this.props'
     return (
-      <li style={style} onClick={this.onListItemClick.bind(this)}>{this.props.item}</li>
+      <li style={style} onMouseEnter={this.onListItemHover.bind(this)}>{this.props.item}</li>
     );
 
   }

@@ -50,6 +50,7 @@ class GroceryListItem extends React.Component {
   //When React instantiates the component, it will pass 'props' to the constructor
 
   constructor(props) {
+    console.log('within class:', props)
     // equivalent to ES5's React.Component.call(this, props)
     super(props);
 
@@ -80,19 +81,23 @@ class GroceryListItem extends React.Component {
     //props is no longer passed in as an argument,
     //but instead accessed with 'this.props'
     return (
-      <li style={style} onMouseEnter={this.onListItemHover.bind(this)}>{this.props.item}</li>
+      <li style={style} onMouseEnter={this.onListItemHover.bind(this)} onMouseLeave={this.onListItemHover.bind(this)}>{this.props.item}</li>
     );
 
   }
 
 }
 
-const GroceryList = (props) => (
+const GroceryList = (props) =>
+{
+  console.log(props);
+
+  return (
   <ul>
     {props.items.map(item =>
       <GroceryListItem item={item} />
     )}
   </ul>
-);
+)};
 
-ReactDOM.render(<GroceryList items={['Apples', 'Bananas', 'Kale']} />, document.getElementById("app"));
+ReactDOM.render(<GroceryList items={['Apples', 'Bananas', 'Kale', 'Paper Towels', 'Cake', 'Eggs']} />, document.getElementById("app"));
